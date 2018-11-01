@@ -27,4 +27,4 @@ for n, face_rect in enumerate(detected_faces):
     face = Image.fromarray(image).crop(face_rect)
     cropFileName=str(img[:-4])+'_cropped.png'
     face.save('processed/'+cropFileName)
-    print('Image Cropped, New File name is: 'str(cropFileName))
+    print('Image Cropped, New File name is: '+ str(cropFileName))
