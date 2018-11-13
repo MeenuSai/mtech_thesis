@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[81]:
 
 
 import dlib
@@ -9,27 +8,6 @@ from PIL import Image
 from skimage import io
 import sys
 img=sys.argv[1]
-#import matplotlib
-#matplotlib.use('GTK')
-#matplotlib.use('Agg')
-#import pygtk
-#pygtk.require('3.0')
-#import gtk
-#from gtk import gdk
-
-#import matplotlib
-#matplotlib.use('GTKAgg')  # or 'GTK'
-#from matplotlib.backends.backend_gtk import FigureCanvasGTK as FigureCanvas
-
-#from numpy.random import random
-#from matplotlib.figure import Figure
-#import matplotlib.pyplot as plt
-#matplotlib.use('Agg')
-#from matplotlib.backends._backend_gdk import pixbuf_get_pixels_array
-#from matplotlib.backends.backend_gtk import FigureCanvasGTK as FigureCanvas
-#from matplotlib.backends.backend_gdk import RendererGDK, FigureCanvasGDK
-#import matplotlib.pyplot as plt
-
 
 def detect_faces(image):
 
@@ -43,21 +21,13 @@ def detect_faces(image):
 
     return face_frames
 
-# Load image
 img_path = img
-#image = io.imread(img_path)
-image=Image.open(img_path)
-# Detect faces
+image = io.imread(img_path)
 detected_faces = detect_faces(image)
 
-# Crop faces and plot
 for n, face_rect in enumerate(detected_faces):
-    #print(face)
-    print(n)
     face = Image.fromarray(image).crop(face_rect)
-#    plt.subplot(1, len(detected_faces), n+1)
-#    plt.axis('off')
-    #plt.imshow(face)
-#    fim -a face
-    face.save("%s.png" % (n+5))
+    cropFileName=str(img[:-4])+'_cropped.png'
+    face.save('processed/'+cropFileName)
+print('Image Cropped, New File name is: '+ str(cropFileName))
 
